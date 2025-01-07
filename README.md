@@ -28,7 +28,7 @@ Alternatively, you can add the following dependency to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/kimkyuchul/FSPagerView-SPM", from: "1.3.5")
+    .package(url: "https://github.com/kimkyuchul/FSPagerView-SPM", from: "1.3.6")
 ]
 ```
 
