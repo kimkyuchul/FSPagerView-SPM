@@ -28,7 +28,7 @@ Alternatively, you can add the following dependency to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/kimkyuchul/FSPagerView-SPM", from: "1.2.9")
+    .package(url: "https://github.com/kimkyuchul/FSPagerView-SPM", from: "1.3.0")
 ]
 ```
 
@@ -74,20 +74,14 @@ class ViewController: UIViewController, FSPagerViewDataSource, FSPagerViewDelega
 
 ### SwiftUI Implementation
 ```swift
-struct ContentView: View {
-    @State private var currentPage = 0
-    
-    var body: some View {
-        VStack {
-            FSPagerViewWrapper(imageNames: ["image1", "image2", "image3"],
-                             currentPage: $currentPage)
-                .frame(height: 200)
-            
-            PageControl(numberOfPages: 3, currentPage: $currentPage)
-                .frame(height: 20)
-        }
-    }
-}
+import SwiftUI
+import FSPagerViewSwift
+
+public struct FSPagerBannerView: UIViewRepresentable {
+  private let bannerView = FSPagerView()
+...
+...
+...
 ```
 
 ## Credits
