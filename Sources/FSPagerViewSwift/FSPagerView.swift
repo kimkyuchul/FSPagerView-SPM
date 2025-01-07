@@ -286,9 +286,6 @@ open class FSPagerView: UIView,UICollectionViewDataSource,UICollectionViewDelega
             self.startTimer()
         } else {
             self.cancelTimer()
-            
-            self.collectionView.dataSource = nil
-            self.collectionView.delegate = nil
         }
     }
     
@@ -308,7 +305,10 @@ open class FSPagerView: UIView,UICollectionViewDataSource,UICollectionViewDelega
     }
     
 #endif
-    deinit {}
+    deinit {
+        self.collectionView.dataSource = nil
+        self.collectionView.delegate = nil
+    }
     
     // MARK: - UICollectionViewDataSource
     
