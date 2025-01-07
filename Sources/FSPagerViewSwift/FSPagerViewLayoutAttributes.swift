@@ -11,19 +11,23 @@ import UIKit
 open class FSPagerViewLayoutAttributes: UICollectionViewLayoutAttributes {
     open var position: CGFloat = 0
     
-    @MainActor
     open override func isEqual(_ object: Any?) -> Bool {
         guard let object = object as? FSPagerViewLayoutAttributes else {
             return false
         }
-        let isEqual = super.isEqual(object)
-        return isEqual && (self.position == object.position)
+
+        return MainActor.run {
+            let isEqual = super.isEqual(object)
+            return isEqual && (self.position == object.position)
+        }
     }
     
-    @MainActor
     open override func copy(with zone: NSZone? = nil) -> Any {
         let copy = super.copy(with: zone) as! FSPagerViewLayoutAttributes
-        copy.position = self.position
+
+        MainActor.run {
+            copy.position = self.position
+        }
         return copy
     }
 }
