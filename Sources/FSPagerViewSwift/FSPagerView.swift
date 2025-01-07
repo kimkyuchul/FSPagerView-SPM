@@ -306,8 +306,10 @@ open class FSPagerView: UIView,UICollectionViewDataSource,UICollectionViewDelega
     
 #endif
     deinit {
-        self.collectionView.dataSource = nil
-        self.collectionView.delegate = nil
+        Task { @MainActor [weak self] in
+            self?.collectionView.dataSource = nil
+            self?.collectionView.delegate = nil
+        }
     }
     
     // MARK: - UICollectionViewDataSource
