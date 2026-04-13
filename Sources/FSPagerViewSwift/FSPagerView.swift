@@ -306,9 +306,11 @@ open class FSPagerView: UIView,UICollectionViewDataSource,UICollectionViewDelega
     
 #endif
     deinit {
-        Task { @MainActor [weak self] in
-            self?.collectionView.dataSource = nil
-            self?.collectionView.delegate = nil
+        // UIView is always deallocated on the main thread,
+        // so we can safely assume main actor isolation here.
+        MainActor.assumeIsolated {
+            collectionView.dataSource = nil
+            collectionView.delegate = nil
         }
     }
     
